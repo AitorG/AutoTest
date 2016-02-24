@@ -4,11 +4,11 @@ function routes($stateProvider, $urlRouterProvider) {
     $stateProvider
         .state('index', {
             url: '/',
-            templateUrl: 'templates/dashboard.html'
+            templateUrl: 'app/components/dashboard/dashboard.html'
         })
         .state('tables', {
             url: '/tables',
-            templateUrl: 'templates/tables.html'
+            templateUrl: 'app/components/tables/tables.html'
         });
 
     $urlRouterProvider.otherwise(function($injector) {
