@@ -1,0 +1,26 @@
+
+<div class="row">
+	<div class="col-xs-1">
+		<i class="fa fa-user loginIcon"></i>
+	</div>
+	<div class="col-xs-11">
+		<md-input-container class="md-block">
+			<label>Nombre de usuario</label>
+			<input required name="clientName" ng-model="user.userName">
+		</md-input-container>
+	</div>
+
+	<div class="col-xs-1">
+		<i class="fa fa-envelope loginIcon"></i>
+	</div>
+	<div class="col-xs-11">
+		<md-input-container class="md-block">
+			<label>Correo electrónico</label>
+			<input required type="email" name="clientEmail" ng-model="user.userMail"
+			minlength="10" maxlength="100" ng-pattern="/^.+@.+\..+$/" />
+		</md-input-container>
+	</div>
+	<div class="col-xs-12">
+		<md-button class="md-raised md-primary loginButton">Entrar</md-button>
+	</div>
+</div>

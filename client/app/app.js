@@ -1,1 +1,1 @@
-var app = angular.module('AutoTest', ['ui.bootstrap', 'ui.router', 'ngCookies']);
+var app = angular.module('AutoTest', ['ui.bootstrap', 'ui.router', 'ngCookies', 'ngMaterial']);
