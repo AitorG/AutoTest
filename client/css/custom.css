@@ -1,16 +1,40 @@
 /* Helper classes */
 
-
+.noMargin {
+	margin:0px !important;
+}
 
 
 /* ************** */ 
 
 .loginIcon {
-	padding-top:2px;
-	color:#30426a;
-	font-size:50px;
+	padding-top:5px;
+	color:rgb(67, 74, 199);
+	font-size:45px;
 }
 
-.loginButton {
-	margin: 0;
+.loginBackground {
+	min-height: 100%;
+	min-width: 100%;
+	height: auto;
+	position: fixed;
+	top: 0;
+	left: 0;
+	background: url(../assets/img/loginBG.jpg) no-repeat center center fixed;
+	background-size: cover;
+	opacity:1;
+
+}
+
+.loginDiv {
+	margin-top:20px;
+	padding-top:10px;
+	background-color: rgba(245,245,245,0.85);
+}
+
+@media (max-width: 450px) {
+	.loginIcon {
+		font-size: 35px !important;
+		padding-top:10px;
+	}	
 }
