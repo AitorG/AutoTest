@@ -45,6 +45,42 @@ class AutoTestScraper {
     }
   }
 
+  getAnswersByTestId(id, callback) {
+    let url = `http://testautoescuelaonline.com/test.php?id=${id}`;
+    let requestOptions  = { encoding: null, method: "GET", uri: url};
+
+    request(requestOptions, function(error, response, body) {
+      let utf8String = iconv.decode(new Buffer(body), "ISO-8859-1");
+
+      let $ = cheerio.load(utf8String);
+      let answers = [];
+
+      $('.respuesta label').each(function(index, element) {
+        answers.push($(this).text());
+      });
+      let result = {
+        numberTest: id,
+        answers: answers,
+        totalAnswers: answers.length
+      };
+      callback(error, result);
+
+    });
+  }
+
+  getAllAnswers(callback) {
+    var tests = [];
+    for (var i = 1; i <= 167; i++) {
+      this.getAnswersByTestId(i, function(err, test) {
+        if (err) console.log(err);
+        tests.push(test);
+        console.log(tests.length);
+        if(tests.length == 167) {
+          callback(null, tests);
+        }
+      });
+    }
+  }
 
 
 }
