@@ -12,29 +12,34 @@ function routes($stateProvider, $urlRouterProvider) {
 			url: '/url',
 			templateUrl: 'app/components/login/login.html',
 			controller: 'LoginController',
-			params: {
-				title: "Login"
-			}
+			title: "Login"
 		})
 		.state('master.dashboard', {
 			url: '/dashboard',
 			templateUrl: 'app/components/dashboard/dashboard.html',
 			controller: 'DashboardController',
-			params: {
-				title: "Dashboard"
-			}
+			title: "Dashboard"
 		})
 		.state('master.tests', {
 			url: '/tests',
 			templateUrl: 'app/components/tests/tests.html',
+			controller: 'TestsController',
+			title: "Tests"
+		})
+		.state('master.test', {
+			url: '/test/:idTest',
+			templateUrl: 'app/components/test/test.html',
 			controller: 'TestController',
-			params: {
-				title: "Tests"
+			title: 'Test',
+			resolve:{
+				test: ['TestServices', '$stateParams', function(TestServices, $stateParams){
+					return TestServices.getTestById($stateParams.idTest);
+				}]
 			}
 		});
 
 	$urlRouterProvider.otherwise(function($injector) {
 		var $state = $injector.get("$state");
-		$state.go("master.dashboard"); //set login when ready
+		$state.go("login"); 
 	});
 }

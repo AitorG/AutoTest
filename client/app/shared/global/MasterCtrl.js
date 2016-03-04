@@ -20,7 +20,7 @@
         });
         
         var listener = function(){
-            $scope.title = $state.params.title;  
+            $scope.title = $state.current.title;  
         };
 
         $scope.$on('$stateChangeSuccess', listener);
