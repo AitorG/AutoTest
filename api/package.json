@@ -1,0 +1,25 @@
+{
+  "name": "autotest-api",
+  "version": "0.0.1",
+  "description": "Api for Autotest app",
+  "main": "app.js",
+  "scripts": {
+    "test": "mocha"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/AitorG/AutoTest.git"
+  },
+  "author": "zamarrowski",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/AitorG/AutoTest/issues"
+  },
+  "homepage": "https://github.com/AitorG/AutoTest#readme",
+  "dependencies": {
+    "body-parser": "^1.15.0",
+    "express": "^4.13.4",
+    "mongoose": "^4.4.6",
+    "morgan": "^1.7.0"
+  }
+}
