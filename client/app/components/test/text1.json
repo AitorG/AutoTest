@@ -1,0 +1,42 @@
+[
+	{
+		"id": 1,
+		"question": "¿Es correcta la señal de la imagen?",
+		"answers": [
+			{
+				"id": 1,
+				"answer": "Si, la imagen es correcta"
+			},
+			{
+				"id": 2,
+				"answer": "No, la imagen es incorrecta"
+			},
+			{
+				"id": 3,
+				"answer": "Si, pero solo en caso de ausencia de semáforo"
+			}
+		],
+		"correctAnswer": 2,
+		"image": ""
+	},
+	{
+		"id": 2,
+		"question": "¿Qué señales tiene preferencia?",
+		"answers": [
+			{
+				"id": 1,
+				"answer": "Las señales horizontales"
+			},
+			{
+				"id": 2,
+				"answer": "La señal más restrictiva"
+			},
+			{
+				"id": 3,
+				"answer": "Las señales verticales"
+			}
+		],
+		"correctAnswer": 3,
+		"image": ""
+	}
+]

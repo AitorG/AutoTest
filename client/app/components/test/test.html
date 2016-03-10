@@ -1,0 +1,22 @@
+<div class="row">
+	<div class="col-xs-12">
+		<p class=md-display-1>
+			{{question.question}}
+		</p>
+	</div>
+</div>
+<div class="row">
+	<div class="col-xs-12">
+		<md-radio-group ng-model="reply">
+			<md-radio-button ng-repeat="answer in question.answers" value="{{answer.id}}" class="md-primary">
+				{{answer.answer}}
+			</md-radio-button>
+		</md-radio-group>
+	</div>
+</div>
+<div class="row">
+	<div class="col-xs-12">
+		<md-button class="md-raised md-primary midButton" ng-disabled="reply == null" disabled ng-click="sendAnswer(reply)">Siguiente</md-button>
+	</div>
+</div>
+

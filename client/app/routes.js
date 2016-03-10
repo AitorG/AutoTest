@@ -9,7 +9,7 @@ function routes($stateProvider, $urlRouterProvider) {
 			controller: 'MasterCtrl'
 		})
 		.state('login', {
-			url: '/url',
+			url: '/login',
 			templateUrl: 'app/components/login/login.html',
 			controller: 'LoginController',
 			title: "Login"
