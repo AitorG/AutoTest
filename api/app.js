@@ -14,9 +14,12 @@ app.use(require('./middlewares/allowcrossdomain.js'));
 
 //Routes
 app.use('/', require('./routes/mainroutes.js'));
-
+app.use('/auth', require('./routes/auth/UserRoutes.js'));
+mongoose.connect(config.database);
 //Error handler
 app.use(function(err, req, res, next){
+  res.status(400);
+  console.log(err);
   res.json({success:false, message: err.message});
 });
 
