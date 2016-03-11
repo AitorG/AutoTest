@@ -11,7 +11,12 @@ class UserServices {
     newUser.save(function(err, doc) {
       callback(err, doc);
     });
+  }
 
+  deleteUser(userId, callback) {
+    User.remove({_id: userId}, function(err, response) {
+      callback(err, response);
+    });
   }
 
 }

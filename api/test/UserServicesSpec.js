@@ -24,13 +24,26 @@ describe('UserServices', function() {
         password: 'password',
         email: 'sergiozamarro@hotmail.com'
       };
-
       UserServices.createUser(user, function(err, doc) {
         err.should.be.a.Object();
         done();
       });
-
     });
+  });
 
+  describe('deleteUser()', function() {
+    it('Should return [] if user is deleted', function(done) {
+      var user = {
+        username: 'zamarrowski',
+        password: 'password',
+        email: 'sergiozamarro@hotmail.com'
+      };
+      UserServices.createUser(user, function(err, userDoc) {
+        UserServices.deleteUser(userDoc._id, function(err, response) {
+          response.result.ok.should.be.equal(1);
+          done();
+        });
+      });
+    });
   });
 });
