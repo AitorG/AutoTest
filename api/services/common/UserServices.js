@@ -19,6 +19,22 @@ class UserServices {
     });
   }
 
+  changePassword(userId, newPassword, oldPassword, callback) {
+    User.findById(userId, function(err, doc) {
+      if (err) callback(err, null);
+
+      if (oldPassword == doc.password) {
+        doc.password = newPassword;
+        doc.save(function(err, doc) {
+          callback(err, doc);
+        });
+      } else {
+        callback('Incorrect password', null);
+      }
+
+    })
+  }
+
 }
 
 module.exports = new UserServices();

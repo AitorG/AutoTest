@@ -46,4 +46,36 @@ describe('UserServices', function() {
       });
     });
   });
+
+  describe('changePassword()', function() {
+    it('Should return doc.password == "changedPassword" if oldpassword is correct', function(done){
+      var user = {
+        username: 'zamarrowski',
+        password: 'password',
+        email: 'sergiozamarro@hotmail.com'
+      };
+      UserServices.createUser(user, function(err, userDoc) {
+        UserServices.changePassword(userDoc._id, 'changedPassword', 'password', function(err, doc){
+          doc.password.should.be.equal('changedPassword');
+          done();
+        });
+      });
+    });
+
+    it('Should return "Incorrect password" if oldPassword != currentPassword', function(done) {
+      var user = {
+        username: 'zamarrowski',
+        password: 'password',
+        email: 'sergiozamarro@hotmail.com'
+      };
+      UserServices.createUser(user, function(err, userDoc) {
+        UserServices.changePassword(userDoc._id, 'changedPassword', 'failPassword', function(err, doc){
+          err.should.be.equal('Incorrect password');
+          done();
+        });
+      });
+    });
+
+  });
+
 });
