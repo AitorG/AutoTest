@@ -2,6 +2,8 @@
 const express = require('express');
 let router = express.Router();
 let UserServices = require('./../../services/common/UserServices.js');
+let config = require('./../../config.js');
+const jwt = require('jsonwebtoken');
 
 router.post('/', function(req, res, next) {
   let user = {
@@ -35,6 +37,21 @@ router.post('/changePassword', function(req, res, next) {
       next(err);
     } else {
       res.json(doc);
+    }
+  });
+});
+
+router.post('/login', function(req, res, next) {
+  UserServices.login(req.body.username, req.body.password, function(err, user) {
+    if (err) {
+      next(new Error('Error at login.'));
+    } else {
+      if (!user) {
+        next(new Error('Incorrect username or password'));
+      } else {
+        var token = jwt.sign(user, config.secretKey, { expireInMinutes: 1440 });
+        res.json({success: true, token: token});
+      }
     }
   });
 });

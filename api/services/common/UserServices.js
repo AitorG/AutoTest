@@ -29,10 +29,15 @@ class UserServices {
           callback(err, doc);
         });
       } else {
-        callback('Incorrect password', null);
+        callback(new Error('Incorrect password'), null);
       }
-
     })
+  }
+
+  login(username, password, callback) {
+    User.findOne({username: username, password: password}, function(err, doc) {
+      callback(err, doc);
+    });
   }
 
 }
