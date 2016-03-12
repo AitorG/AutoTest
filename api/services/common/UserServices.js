@@ -2,9 +2,7 @@
 let User = require('./../../models/common/UserModel.js');
 
 class UserServices {
-  constructor() {
-
-  }
+  constructor() {}
 
   createUser(user, callback) {
     let newUser = new User(user);
@@ -33,13 +31,6 @@ class UserServices {
       }
     })
   }
-
-  login(username, password, callback) {
-    User.findOne({username: username, password: password}, function(err, doc) {
-      callback(err, doc);
-    });
-  }
-
 }
 
 module.exports = new UserServices();

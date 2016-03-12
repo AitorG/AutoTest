@@ -1,9 +1,10 @@
 'use strict';
 const express = require('express');
+const jwt = require('jsonwebtoken');
 let router = express.Router();
 let UserServices = require('./../../services/common/UserServices.js');
 let config = require('./../../config.js');
-const jwt = require('jsonwebtoken');
+let AuthServices = require('./../../services/common/AuthServices.js');
 
 router.post('/', function(req, res, next) {
   let user = {
@@ -21,7 +22,7 @@ router.post('/', function(req, res, next) {
   });
 });
 
-router.delete('/:userId', function(req, res, next) {
+router.delete('/:userId', AuthServices.verifyToken, function(req, res, next) {
   UserServices.deleteUser(req.params.userId, function(err, response) {
     if (err) {
       next(err);
@@ -31,7 +32,7 @@ router.delete('/:userId', function(req, res, next) {
   });
 });
 
-router.post('/changePassword', function(req, res, next) {
+router.post('/changePassword', AuthServices.verifyToken, function(req, res, next) {
   UserServices.changePassword(req.body.userId, req.body.newPassword, req.body.oldPassword, function(err, doc) {
     if (err) {
       next(err);
@@ -42,7 +43,7 @@ router.post('/changePassword', function(req, res, next) {
 });
 
 router.post('/login', function(req, res, next) {
-  UserServices.login(req.body.username, req.body.password, function(err, user) {
+  AuthServices.login(req.body.username, req.body.password, function(err, user) {
     if (err) {
       next(new Error('Error at login.'));
     } else {
