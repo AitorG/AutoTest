@@ -29,7 +29,25 @@ class UserServices {
       } else {
         callback(new Error('Incorrect password'), null);
       }
-    })
+    });
+  }
+
+  setApprovedTest(userId, number, callback) {
+    if (number >= 0) {
+      User.findById(userId, function(err, doc) {
+        if (err) {
+          callback(err, null)
+        } else {
+          doc.approvedTest = number;
+          doc.save(function(err, doc) {
+            callback(err, doc);
+          });
+        }
+      });
+    } else {
+      callback(new Error('Number can´t be negative'), null);
+    }
+
   }
 }
 

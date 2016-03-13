@@ -1,6 +1,7 @@
 var should = require('should');
 var UserServices = require('./../services/common/UserServices.js');
 var mongoose = require('mongoose');
+var User = require('./../models/common/UserModel.js');
 var config = require('./../config.js');
 mongoose.connect(config.database);
 
@@ -76,4 +77,35 @@ describe('UserServices', function() {
       });
     });
   });
+
+  describe('setApprovedTest()', function() {
+    it('Should set to 1 aprrovedTest', function(done) {
+      User.findOne({}, function(err, doc) {
+        UserServices.setApprovedTest(doc._id, 1, function(err, doc) {
+          doc.approvedTest.should.be.equal(1);
+          done();
+        });
+      });
+    });
+
+    it('Should set to 0 approvedTest', function(done) {
+      User.findOne({}, function(err, doc) {
+        UserServices.setApprovedTest(doc._id, 0, function(err, doc) {
+          doc.approvedTest.should.be.equal(0);
+          done();
+        });
+      });
+    });
+
+    it('Should return error if number is negative', function(done) {
+      User.findOne({}, function(err, doc) {
+        UserServices.setApprovedTest(doc._id, -1, function(err, doc) {
+          err.message.should.be.equal('Number can´t be negative');
+          done();
+        });
+      });
+    });
+
+  });
+
 });
