@@ -105,6 +105,35 @@ describe('UserServices', function() {
         });
       });
     });
+  });
+
+  describe('setRightQuestions()', function() {
+    it('Should set 1 rightQuestions', function(done) {
+      User.findOne({}, function(err, doc) {
+        UserServices.setRightQuestions(doc._id, 1, function(err, doc) {
+          doc.rightQuestions.should.be.equal(1);
+          done();
+        });
+      });
+    });
+
+    it('Should set to 0 rightQuestions', function(done) {
+      User.findOne({}, function(err, doc) {
+        UserServices.setRightQuestions(doc._id, 0, function(err, doc) {
+          doc.rightQuestions.should.be.equal(0);
+          done();
+        });
+      });
+    });
+
+    it('Should return error if number is negative', function(done) {
+      User.findOne({}, function(err, doc) {
+        UserServices.setRightQuestions(doc._id, -1, function(err, doc) {
+          err.message.should.be.equal('Number can´t be negative');
+          done();
+        });
+      });
+    });
 
   });
 

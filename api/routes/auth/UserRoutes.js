@@ -67,4 +67,14 @@ router.post('/setApprovedTest', AuthServices.verifyToken, function(req, res, nex
   });
 });
 
+router.post('/setRightQuestions', AuthServices.verifyToken, function(req, res, next) {
+  UserServices.setRightQuestions(req.body.userId, req.body.rightQuestions, function(err, doc) {
+    if (err) {
+      next(err);
+    } else {
+      res.json(doc);
+    }
+  });
+});
+
 module.exports = router;

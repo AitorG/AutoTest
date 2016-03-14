@@ -47,8 +47,25 @@ class UserServices {
     } else {
       callback(new Error('Number can´t be negative'), null);
     }
-
   }
+
+  setRightQuestions(userId, number, callback) {
+    if (number >= 0) {
+      User.findById(userId, function(err, doc) {
+        if (err) {
+          callback(err, null)
+        } else {
+          doc.rightQuestions = number;
+          doc.save(function(err, doc) {
+            callback(err, doc);
+          });
+        }
+      });
+    } else {
+      callback(new Error('Number can´t be negative'), null);
+    }
+  }
+
 }
 
 module.exports = new UserServices();
