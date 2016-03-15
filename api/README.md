@@ -1,5 +1,5 @@
 # AutoTest API
-By default the API is running in **localhost:3001**. If the request is incorrect the API response with the follow structure:
+By default the API is running in **localhost:3001**. If the request is incorrect the API return the following structure:
 ```
 {
     success: Boolean,
@@ -65,7 +65,7 @@ params: {
     oldPassword: String
 }
 return {
-    _od: ObjectId
+    _id: ObjectId
     username: String,
     password: String,
     email: String,
