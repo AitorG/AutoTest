@@ -134,7 +134,24 @@ describe('UserServices', function() {
         });
       });
     });
+  });
 
+  describe('getUser()', function() {
+    it('Should return a user if id exist', function(done) {
+      var userId = '56e31a9fe46c89151bcd2ae2';
+      UserServices.getUser(userId, function(err, doc) {
+        doc.username.should.be.equal('zamarrowski');
+        done();
+      });
+    });
+
+    it('Should return a error if user doesn´t exist', function(done) {
+      var userId = '';
+      UserServices.getUser(userId, function(err, doc) {
+        err.message.should.be.equal('User does not exist');
+        done();
+      });
+    });
   });
 
 });

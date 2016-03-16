@@ -11,6 +11,16 @@ class UserServices {
     });
   }
 
+  getUser(userId, callback) {
+    User.findById(userId, function(err, doc) {
+      if (err) {
+        callback(new Error('User does not exist'), null);
+      } else {
+        callback(null, doc);
+      }
+    });
+  }
+
   deleteUser(userId, callback) {
     User.remove({_id: userId}, function(err, response) {
       callback(err, response);

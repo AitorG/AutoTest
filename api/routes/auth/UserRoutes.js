@@ -22,6 +22,16 @@ router.post('/', function(req, res, next) {
   });
 });
 
+router.get('/:userId', AuthServices.verifyToken, function(req, res, next) {
+  UserServices.getUser(req.params.userId, function(err, doc) {
+    if (err) {
+      next(err);
+    } else {
+      res.json(doc);
+    }
+  });
+});
+
 router.delete('/:userId', AuthServices.verifyToken, function(req, res, next) {
   UserServices.deleteUser(req.params.userId, function(err, response) {
     if (err) {
