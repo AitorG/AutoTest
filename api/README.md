@@ -75,3 +75,23 @@ return {
     failedTest: Number
 }
 ```
+
+### 5. Get user:
+```
+Method: GET
+Auth with token: true
+http://localhost:3001/auth/:userId
+params: {
+    userId: String,
+}
+return {
+    _id: ObjectId
+    username: String,
+    password: String,
+    email: String,
+    rightQuestions: Number,
+    failedQuestions: Number,
+    approvedTest: Number,
+    failedTest: Number
+}
+```

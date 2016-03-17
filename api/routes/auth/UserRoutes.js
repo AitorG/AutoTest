@@ -32,6 +32,16 @@ router.get('/:userId', AuthServices.verifyToken, function(req, res, next) {
   });
 });
 
+router.post('/orderByApprovedTest', AuthServices.verifyToken, function(req, res, next) {
+  UserServices.getUsersOrderByApprovedTest(req.body.order, function(err, docs) {
+    if (err) {
+      next(err);
+    } else {
+      res.json(docs);
+    }
+  })
+});
+
 router.delete('/:userId', AuthServices.verifyToken, function(req, res, next) {
   UserServices.deleteUser(req.params.userId, function(err, response) {
     if (err) {

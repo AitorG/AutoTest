@@ -138,7 +138,7 @@ describe('UserServices', function() {
 
   describe('getUser()', function() {
     it('Should return a user if id exist', function(done) {
-      var userId = '56e31a9fe46c89151bcd2ae2';
+      var userId = '56eb00f905e5feae05373b6a';
       UserServices.getUser(userId, function(err, doc) {
         doc.username.should.be.equal('zamarrowski');
         done();
@@ -152,6 +152,30 @@ describe('UserServices', function() {
         done();
       });
     });
+  });
+
+  describe('getUsersOrderByApprovedTest(order)', function() {
+    it('Should return in asc order if order == 1', function(done) {
+      UserServices.getUsersOrderByApprovedTest(1, function(err, docs) {
+        docs[0].approvedTest.should.be.lessThan(docs[docs.length - 1].approvedTest);
+        done();
+      });
+    });
+
+    it('Should return in desc order if order == -1', function(done) {
+      UserServices.getUsersOrderByApprovedTest(-1, function(err, docs) {
+        docs[0].approvedTest.should.be.greaterThan(docs[docs.length - 1].approvedTest);
+        done();
+      });
+    });
+
+    it('Should return error if order != 1 || != -1', function(done) {
+      UserServices.getUsersOrderByApprovedTest(0, function(err, docs) {
+        err.message.should.be.equal('Order incorrect.');
+        done();
+      });
+    });
+
   });
 
 });

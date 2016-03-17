@@ -21,6 +21,17 @@ class UserServices {
     });
   }
 
+  getUsersOrderByApprovedTest(order, callback) {
+    if (order != 1 && order != -1) {
+      callback(new Error('Order incorrect.'), null);
+    } else {
+      User.find({}, {}, {sort: {approvedTest: order}}, function(err, docs) {
+        console.log(docs);
+        callback(err, docs);
+      });
+    }
+  }
+
   deleteUser(userId, callback) {
     User.remove({_id: userId}, function(err, response) {
       callback(err, response);
