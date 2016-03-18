@@ -14,7 +14,8 @@ app.use(require('./middlewares/allowcrossdomain.js'));
 
 //Routes
 app.use('/', require('./routes/mainroutes.js'));
-app.use('/auth', require('./routes/auth/UserRoutes.js'));
+app.use('/auth', require('./routes/common/AuthRoutes.js'));
+app.use('/user', require('./routes/common/UserRoutes.js'));
 mongoose.connect(config.database);
 //Error handler
 app.use(function(err, req, res, next){
