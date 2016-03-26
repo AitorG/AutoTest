@@ -54,6 +54,18 @@
 	margin-top:15px;
 }
 
+ul.counter {
+	list-style-type:none;
+	width:566px;
+	margin:50px auto;
+}
+
+.counter li {
+	float:left;
+	background:url(../assets/img/filmstrip.png) 0 -1920px no-repeat;
+	width:53px;
+	height:103px;
+}
 
 
 /* Media querys */
