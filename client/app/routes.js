@@ -42,7 +42,6 @@ function routes($stateProvider, $urlRouterProvider) {
 			templateUrl: 'app/components/profile/profile.html',
 			controller: 'ProfileController',
 			title: 'Profile'
-			//resolve:{}
 		});
 
 	$urlRouterProvider.otherwise(function($injector) {
