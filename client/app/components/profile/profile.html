@@ -29,13 +29,24 @@
 						<label>User name</label>
 						<input ng-model="user.userName">
 					</md-input-container>
-					<md-input-container class="md-block">
-						<label>Password</label>
-						<input type="password" ng-model="user.password">
-					</md-input-container>
+					<div ng-if="changeDates">
+						<md-input-container class="md-block">
+							<label>Password</label>
+							<input type="password" ng-model="user.password">
+						</md-input-container>
+						<md-input-container class="md-block">
+							<label>Confirm password</label>
+							<input type="password">
+						</md-input-container>
+					</div>
+					
+					<button class="btn btn-default" ng-if="!changeDates" ng-click="showChangeDates()">Modificar contraseña</button>
 				</form>
 			</div>
 		</div>
 
+	</div>
+	<div class="col-md-12">
+		<button class="btn btn-success" ng-click="saveProfileChanges(user)">Guardar cambios</button>
 	</div>
 </div>
