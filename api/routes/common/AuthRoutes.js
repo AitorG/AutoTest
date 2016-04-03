@@ -13,7 +13,7 @@ router.post('/login', function(req, res, next) {
       if (!user) {
         next(new Error('Incorrect username or password'));
       } else {
-        var token = jwt.sign(user, config.secretKey, { expireInMinutes: 1440 });
+        var token = jwt.sign(user, config.secretKey, { expiresInMinutes: 1440 });
         res.json({success: true, token: token, user: user});
       }
     }
